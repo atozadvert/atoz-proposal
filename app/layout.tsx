@@ -32,9 +32,12 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm shadow-sm">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-600">AtoZ Advert</p>
-              <p className="text-xl font-semibold text-slate-900">Proposals</p>
+            <div className="flex items-center gap-4">
+              <img src="/atozadvert proposals-logo.png" alt="AtoZ Advert Proposals" className="h-10 w-auto" />
+              {/* <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-600">AtoZ Advert</p>
+                <p className="text-xl font-semibold text-slate-900">Proposals</p>
+              </div> */}
             </div>
             <nav className="flex flex-wrap items-center gap-4 text-sm text-slate-700">
               {isLoggedIn ? (

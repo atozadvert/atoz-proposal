@@ -657,69 +657,6 @@ export default function AdminDashboard() {
                   </div>
                 </div>
               </div>
-
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-lg font-bold mb-4">Terms & Conditions</h2>
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Deposit Required (%)
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      value={proposal.terms?.depositPercent || 50}
-                      onChange={(e) =>
-                        setProposal((prev) => ({
-                          ...prev,
-                          terms: {
-                            ...prev.terms,
-                            depositPercent: parseInt(e.target.value),
-                          },
-                        }))
-                      }
-                      className="w-full border rounded px-3 py-2"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Timeline
-                    </label>
-                    <textarea
-                      value={proposal.terms?.timeline || ''}
-                      onChange={(e) =>
-                        setProposal((prev) => ({
-                          ...prev,
-                          terms: { ...prev.terms, timeline: e.target.value },
-                        }))
-                      }
-                      className="w-full border rounded px-3 py-2"
-                      rows={2}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Additional Terms
-                    </label>
-                    <textarea
-                      value={proposal.terms?.additionalTerms || ''}
-                      onChange={(e) =>
-                        setProposal((prev) => ({
-                          ...prev,
-                          terms: { ...prev.terms, additionalTerms: e.target.value },
-                        }))
-                      }
-                      className="w-full border rounded px-3 py-2"
-                      rows={3}
-                      placeholder="Any additional terms and conditions..."
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Right: Preview */}

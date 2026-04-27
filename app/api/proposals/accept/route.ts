@@ -20,17 +20,17 @@ export async function GET(request: NextRequest) {
       const responseAt = new Date().toISOString();
       const updateWithResponseAt = await supabase
         .from("proposals")
-        .update({ status: "accepted", response_at: responseAt })
+        .update({ status: "pending payment", response_at: responseAt })
         .eq("id", proposalId);
 
       if (updateWithResponseAt.error) {
         const fallback = await supabase
           .from("proposals")
-          .update({ status: "accepted" })
+          .update({ status: "pending payment" })
           .eq("id", proposalId);
 
         if (fallback.error) {
-          console.error("Could not update proposal status to accepted:", fallback.error);
+          console.error("Could not update proposal status to pending payment:", fallback.error);
         }
       }
     } catch (error) {
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
       `
       <html>
         <head>
-          <title>Proposal Accepted</title>
+          <title>Payment Pending</title>
           <style>
             body {
               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -87,14 +87,14 @@ export async function GET(request: NextRequest) {
         </head>
         <body>
           <div class="container">
-            <h1>Proposal Accepted</h1>
-            <p>Thank you for accepting the proposal.</p>
+            <h1>Payment Pending</h1>
+            <p>Thank you for accepting the proposal. Please complete payment to finalize the agreement.</p>
             <div class="info">
               <p><strong>Proposal ID:</strong><br>${proposalId}</p>
               ${customerEmail ? `<p><strong>Email:</strong><br>${customerEmail}</p>` : ""}
             </div>
             <a href="${paymentLink}" class="button" target="_blank" rel="noopener noreferrer">Continue to Payment</a>
-            ${paymentLink && paymentLink !== 'https://example.com/add-payment-link-here' ? '' : '<p class="note">Set PROPOSAL_PAYMENT_LINK in your environment to replace this placeholder link.</p>'}
+            ${paymentLink && paymentLink !== 'https://gmail.com/' ? '' : '<p class="note"></p>'}
           </div>
         </body>
       </html>
