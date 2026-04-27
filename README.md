@@ -33,11 +33,9 @@ http://localhost:3000
 ## Key Pages
 
 - `/` — Home dashboard
-- `/proposal-maker` — Proposal creator and preview
 - `/admin/proposals` — Admin proposal editor
 - `/admin/companies` — Company branding manager
 - `/admin/services` — Service management
-- `/client/proposals` — Client-facing proposal view
 
 ## Notes
 

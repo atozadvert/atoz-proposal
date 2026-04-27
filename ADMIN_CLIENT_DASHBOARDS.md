@@ -77,7 +77,7 @@ Your proposal system now has **two separate interfaces**:
 ## 👁️ Client Dashboard
 
 ### Access
-`http://localhost:3000/client/proposals`
+Clients now receive proposals via **email** with embedded links or attachments.
 
 ### View
 - **Professional proposal template** (same as admin preview)
@@ -255,7 +255,7 @@ Edit `ItemEditor.tsx` select dropdown:
    - Review how it looks
 
 9. **Share with Client**
-   - Send them: `http://localhost:3000/client/proposals`
+   - Send proposals via **email** (configured in email service)
    - They see the proposal in read-only format
 
 10. **Client Actions**
@@ -324,9 +324,9 @@ Formula: **Price × Quantity = Line Total**
 ✓ Try refreshing the page  
 ✓ Check browser console for errors  
 
-### Can't see the client view
-✓ Make sure you're logged out of admin  
-✓ Go directly to: `http://localhost:3000/client/proposals`  
+### Client not receiving emails
+✓ Check email service configuration  
+✓ Verify email address is correct  
 
 ### PDF print looks weird
 ✓ Use Chrome or Edge  
