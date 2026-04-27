@@ -9,6 +9,9 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: "Proposal Maker",
   description: "Create and manage professional proposals with admin and client dashboards.",
+  icons: {
+    icon: "/Favicon-proposals.svg",
+  },
 };
 
 export default async function RootLayout({
