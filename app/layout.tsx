@@ -75,8 +75,19 @@ export default async function RootLayout({
         <main className="flex-1">{children}</main>
 
         <footer className="border-t border-slate-200 bg-white">
-          <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4">
-            <p className="text-sm text-slate-500">Atoz Advert Proposals • © Copyright {currentYear}</p>
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between px-6 py-6 text-sm text-slate-500">
+            <p className="flex items-center">Atoz Advert Proposals • © Copyright {currentYear}</p>
+            <nav className="flex flex-wrap gap-6">
+              <Link href="/" className="transition hover:text-slate-900 font-medium">
+                Home
+              </Link>
+              <Link href="/admin/proposals" className="transition hover:text-slate-900 font-medium">
+                Send Proposal
+              </Link>
+              <Link href="/admin/submitted-proposals" className="transition hover:text-slate-900 font-medium">
+                Submitted Proposals
+              </Link>
+            </nav>
           </div>
         </footer>
       </body>
