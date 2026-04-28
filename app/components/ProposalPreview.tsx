@@ -1,6 +1,6 @@
 'use client';
 
-import { ProposalItem } from '@/app/lib/proposalTypes';
+import { CompanyBranding, ProposalItem } from '@/app/lib/proposalTypes';
 
 interface ProposalPreviewProps {
   clientName: string;
@@ -14,6 +14,7 @@ interface ProposalPreviewProps {
   paymentLink?: string;
   usdTotal?: number;
   companyCurrencyTotal?: number;
+  company?: CompanyBranding | null;
 }
 
 export default function ProposalPreview({
@@ -28,6 +29,7 @@ export default function ProposalPreview({
   paymentLink,
   usdTotal,
   companyCurrencyTotal,
+  company,
 }: ProposalPreviewProps) {
   const selectedItemsList = items.filter((i) => selectedItems.includes(i.id));
   const total = selectedItemsList.reduce((sum, item) => sum + item.price, 0);
@@ -98,8 +100,19 @@ export default function ProposalPreview({
             <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
               From
             </div>
-            <div className="font-semibold text-gray-900">Your Company</div>
-            <div className="text-sm text-gray-600">company@example.com</div>
+            <div className="font-semibold text-gray-900">{company?.businessName || 'Your Company'}</div>
+            <div className="text-sm text-gray-600">{company?.email || 'company@example.com'}</div>
+            {company?.mobileNumber && <div className="text-sm text-gray-600">{company.mobileNumber}</div>}
+            {company?.website && (
+              <a
+                href={company.website}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-sm text-blue-600 break-all hover:underline"
+              >
+                {company.website}
+              </a>
+            )}
           </div>
           <div>
             <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
@@ -205,6 +218,19 @@ export default function ProposalPreview({
           <p className="text-sm text-gray-600">
             Thank you for considering our proposal. Please contact us to discuss further.
           </p>
+          {company?.website && (
+            <p className="mt-3 text-sm text-gray-600">
+              🌐 {' '}
+              <a
+                href={company.website}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-blue-600 hover:underline break-all"
+              >
+                {company.website}
+              </a>
+            </p>
+          )}
           <div className="mt-4 text-xs text-gray-500">
             <p>Terms & Conditions:</p>
             <ul className="list-disc list-inside mt-2">

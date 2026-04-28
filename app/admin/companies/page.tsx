@@ -205,6 +205,20 @@ export default function CompaniesPage() {
                       </div>
                     </div>
 
+                    {company.website && (
+                      <div className="flex items-start gap-2">
+                        <span className="font-medium min-w-fit">Website:</span>
+                        <a
+                          href={company.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline break-all"
+                        >
+                          {company.website}
+                        </a>
+                      </div>
+                    )}
+
                     <div className="flex items-start gap-2">
                       <span className="font-medium min-w-fit">Currency:</span>
                       <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">

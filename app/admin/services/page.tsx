@@ -212,7 +212,7 @@ export default function ServicesPage() {
 
             {selectedCompany.website && (
               <div className="mt-2">
-                <p className="text-sm text-gray-600">Website</p>
+                <p className="text-sm text-gray-600">🌐</p>
                 <a href={selectedCompany.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                   {selectedCompany.website}
                 </a>

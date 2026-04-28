@@ -72,6 +72,7 @@ export function generateProposalHTML(
               ${company.email ? `Email: ${company.email}<br>` : ''}
               ${company.mobileNumber ? `Phone: ${company.mobileNumber}<br>` : ''}
               ${company.address ? `Address: ${company.address}<br>` : ''}
+              ${company.website ? `Website: ${company.website}<br>` : ''}
             </div>
           </div>
 

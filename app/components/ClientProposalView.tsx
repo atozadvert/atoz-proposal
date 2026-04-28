@@ -256,7 +256,7 @@ export default function ClientProposalView({
               )}
               {company?.website && (
                 <p>
-                  Website:{' '}
+                  🌐 {' '}
                   <a
                     href={company.website}
                     target="_blank"

@@ -77,18 +77,86 @@ async function buildEmailHtml(
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Proposal</title>
+        <style>
+          @media only screen and (max-width: 600px) {
+            .email-shell {
+              width: 100% !important;
+              border-radius: 0 !important;
+            }
+
+            .email-header,
+            .email-body {
+              padding: 20px !important;
+            }
+
+            .summary-cell,
+            .action-cell {
+              display: block !important;
+              width: 100% !important;
+              box-sizing: border-box !important;
+            }
+
+            .summary-cell {
+              padding: 10px 16px !important;
+            }
+
+            .action-cell {
+              padding: 6px 0 !important;
+            }
+
+            .action-button {
+              display: block !important;
+              width: 100% !important;
+              box-sizing: border-box !important;
+              text-align: center !important;
+            }
+
+            .services-table,
+            .services-table tbody,
+            .services-table tr,
+            .services-table td {
+              display: block !important;
+              width: 100% !important;
+            }
+
+            .services-table thead {
+              display: none !important;
+            }
+
+            .services-table tr {
+              border: 1px solid #e2e8f0 !important;
+              border-radius: 10px !important;
+              margin-bottom: 12px !important;
+              overflow: hidden !important;
+            }
+
+            .services-table td {
+              text-align: left !important;
+              padding: 10px 12px !important;
+              border-bottom: 1px solid #e2e8f0 !important;
+            }
+
+            .services-table td:last-child {
+              border-bottom: 0 !important;
+            }
+
+            .mobile-total {
+              text-align: left !important;
+            }
+          }
+        </style>
       </head>
       <body style="margin: 0; padding: 24px; background: #f8fafc; color: #0f172a; font-family: Inter, Arial, sans-serif;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 760px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="email-shell" style="max-width: 760px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
           <tr>
-            <td style="padding: 28px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff;">
+            <td class="email-header" style="padding: 28px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff;">
               ${logoSrc ? `<img src="${logoSrc}" alt="${company.businessName} logo" style="max-height: 64px; max-width: 180px; display: block; margin-bottom: 14px;" />` : ""}
               <h1 style="margin: 0; font-size: 28px; line-height: 1.2;">Project Proposal</h1>
               <p style="margin: 8px 0 0 0; opacity: 0.92;">${company.businessName}</p>
             </td>
           </tr>
           <tr>
-            <td style="padding: 28px;">
+            <td class="email-body" style="padding: 28px;">
               <p style="margin: 0 0 14px 0;">Hello ${customerName},</p>
               <p style="margin: 0 0 20px 0; color: #334155;">
                 Please review your proposal for <strong>${proposal.projectTitle}</strong>. You can download the PDF, accept and continue to payment, or decline.
@@ -96,22 +164,22 @@ async function buildEmailHtml(
 
               <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; margin-bottom: 20px;">
                 <tr>
-                  <td style="padding: 14px 16px; width: 33.33%; vertical-align: top;">
+                  <td class="summary-cell" style="padding: 14px 16px; width: 33.33%; vertical-align: top;">
                     <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Proposal ID</div>
                     <div style="font-size: 14px; font-weight: 600; word-break: break-word;">${proposal.id}</div>
                   </td>
-                  <td style="padding: 14px 16px; width: 33.33%; vertical-align: top;">
+                  <td class="summary-cell" style="padding: 14px 16px; width: 33.33%; vertical-align: top;">
                     <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Client</div>
                     <div style="font-size: 14px; font-weight: 600;">${proposal.clientName}</div>
                   </td>
-                  <td style="padding: 14px 16px; width: 33.33%; vertical-align: top;">
+                  <td class="summary-cell" style="padding: 14px 16px; width: 33.33%; vertical-align: top;">
                     <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Valid Until</div>
                     <div style="font-size: 14px; font-weight: 600;">${validUntilText}</div>
                   </td>
                 </tr>
               </table>
 
-              <table style="width: 100%; border-collapse: collapse; margin-bottom: 18px;">
+              <table class="services-table" style="width: 100%; border-collapse: collapse; margin-bottom: 18px;">
                 <thead>
                   <tr style="background: #f1f5f9;">
                     <th style="text-align: left; padding: 10px; border-bottom: 1px solid #e2e8f0;">Service</th>
@@ -139,7 +207,7 @@ async function buildEmailHtml(
                 </tbody>
               </table>
 
-              <div style="text-align: right; margin-bottom: 22px;">
+              <div class="mobile-total" style="text-align: right; margin-bottom: 22px;">
                 <div style="font-size: 13px; color: #64748b;">Total</div>
                 <div style="font-size: 24px; font-weight: 700;">${company.currency || "USD"} ${subtotal.toFixed(2)}</div>
                 <div style="font-size: 14px; color: #64748b;">USD ${subtotalUSD.toFixed(2)}</div>
@@ -154,14 +222,14 @@ async function buildEmailHtml(
 
               <table style="width: 100%; margin-bottom: 8px;">
                 <tr>
-                  <td style="padding: 8px; text-align: center;">
-                    <a href="${pdfLink}" style="display: inline-block; padding: 10px 16px; background: #475569; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600;">Download PDF</a>
+                  <td class="action-cell" style="padding: 8px; text-align: center;">
+                    <a href="${pdfLink}" class="action-button" style="display: inline-block; padding: 10px 16px; background: #475569; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600;">Download PDF</a>
                   </td>
-                  <td style="padding: 8px; text-align: center;">
-                    <a href="${acceptLink}" style="display: inline-block; padding: 10px 16px; background: #059669; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600;">Accept and Pay</a>
+                  <td class="action-cell" style="padding: 8px; text-align: center;">
+                    <a href="${acceptLink}" class="action-button" style="display: inline-block; padding: 10px 16px; background: #059669; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600;">Accept and Pay</a>
                   </td>
-                  <td style="padding: 8px; text-align: center;">
-                    <a href="${declineLink}" style="display: inline-block; padding: 10px 16px; background: #dc2626; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600;">Decline</a>
+                  <td class="action-cell" style="padding: 8px; text-align: center;">
+                    <a href="${declineLink}" class="action-button" style="display: inline-block; padding: 10px 16px; background: #dc2626; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600;">Decline</a>
                   </td>
                 </tr>
               </table>
@@ -173,7 +241,7 @@ async function buildEmailHtml(
                 ${company.email ? `<div>${company.email}</div>` : ""}
                 ${company.mobileNumber ? `<div>${company.mobileNumber}</div>` : ""}
                 ${company.address ? `<div>${company.address}</div>` : ""}
-                ${company.website ? `<div>${company.website}</div>` : ""}
+                ${company.website ? `<div><a href="${company.website}" target="_blank" rel="noreferrer noopener" style="color: #2563eb; text-decoration: underline; word-break: break-all;">${company.website}</a></div>` : ""}
               </div>
             </td>
           </tr>

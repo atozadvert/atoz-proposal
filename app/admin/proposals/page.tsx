@@ -65,6 +65,17 @@ export default function AdminDashboard() {
     setSaveMessage(message);
     setTimeout(() => setSaveMessage(''), durationMs);
   };
+  const getSaveMessageTone = () => {
+    if (saveMessage.startsWith('✅')) {
+      return 'bg-green-50 border-green-500 text-green-900';
+    }
+
+    if (saveMessage.startsWith('❌')) {
+      return 'bg-red-50 border-red-500 text-red-900';
+    }
+
+    return 'bg-blue-50 border-blue-500 text-blue-900';
+  };
 
   // Load proposal draft from localStorage & initialize ID on client side only
   useEffect(() => {
@@ -411,13 +422,6 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-7xl mx-auto p-6">
-        {/* Save Message */}
-        {saveMessage && (
-          <div className="mb-4 p-3 bg-green-100 text-green-900 rounded border border-green-300">
-            {saveMessage}
-          </div>
-        )}
-
         {/* Proposal ID & Actions */}
         <div className="mb-6 bg-white p-4 rounded-lg shadow flex justify-between items-center">
           <div>
@@ -516,6 +520,11 @@ export default function AdminDashboard() {
                   {selectedCompany && (
                     <div className="p-3 bg-blue-50 border border-blue-300 rounded text-sm">
                       <p className="font-medium text-gray-900">{selectedCompany.businessName}</p>
+                      {selectedCompany.website && (
+                        <p className="text-gray-600 text-xs break-all">
+                          🌐 {selectedCompany.website}
+                        </p>
+                      )}
                       <p className="text-gray-600 text-xs">
                         📧 {selectedCompany.email}
                       </p>
@@ -674,6 +683,7 @@ export default function AdminDashboard() {
                   usdTotal={usdTotal}
                   companyCurrencyTotal={companyCurrencyTotal}
                   paymentLink={proposal.paymentLink}
+                  company={selectedCompany}
                 />
               </div>
             </div>
@@ -788,6 +798,19 @@ export default function AdminDashboard() {
                 <div className="text-sm font-semibold text-gray-900 mb-2">🏢 Company Information</div>
                 <div className="text-sm text-gray-700">
                   <p><strong>{selectedCompany?.businessName || 'Company not selected'}</strong></p>
+                  {selectedCompany?.website && (
+                    <p>
+                      🌐{' '}
+                      <a
+                        href={selectedCompany.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline break-all"
+                      >
+                        {selectedCompany.website}
+                      </a>
+                    </p>
+                  )}
                   {selectedCompany && (
                     <>
                       <p>📧 {selectedCompany.email}</p>
@@ -918,11 +941,7 @@ export default function AdminDashboard() {
 
                 {/* Status Message */}
                 {saveMessage && (
-                  <div className={`p-4 rounded-lg border-l-4 ${
-                    saveMessage.startsWith('✅') 
-                      ? 'bg-green-50 border-green-500 text-green-900' 
-                      : 'bg-red-50 border-red-500 text-red-900'
-                  }`}>
+                  <div className={`p-4 rounded-lg border-l-4 ${getSaveMessageTone()}`}>
                     <p className="font-semibold text-sm">{saveMessage}</p>
                   </div>
                 )}
